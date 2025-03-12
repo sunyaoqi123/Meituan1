@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">Meituan</string>
+    <string name="Welcome">欢迎回家！</string>
+    <string name="registerJump">没有账户？去注册！</string>
+    <string name="userId">账户名</string>
+    <string name="userName">请输入您的用户名</string>
+    <string name="password">密码</string>
+    <string name="userpassword">请输入您的密码</string>
+    <string name="forgetPassword">忘记密码</string>
+    <string name="phone">手机验证</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="registerTxt">开启你的便携之旅~</string>
+    <string name="search">搜索店铺</string>
+    <string name="searchBtn">搜索</string>
+    <string name="titlemain">外卖</string>
+    <string name="mainBtn1">点菜</string>
+    <string name="mainBtn2">超优惠</string>
+    <string name="mainBtn3">评价</string>
+    <string name="mainBtn4">商家</string>
+    <string name="ok">去结算</string>
+    <string name="psf">预计另需配送费￥0.5</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="addressBtn">请选择您的收获地址</string>
+    <string name="peisong">立即配送</string>
+    <string name="tips">点餐请适量，环保又健康</string>
 </resources>
