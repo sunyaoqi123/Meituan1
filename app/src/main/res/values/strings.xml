@@ -22,7 +22,12 @@
     <string name="psf">预计另需配送费￥0.5</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="addressBtn">请选择您的收获地址</string>
+    <string name="addressBtn">请选择您的收货地址</string>
     <string name="peisong">立即配送</string>
     <string name="tips">点餐请适量，环保又健康</string>
+    <string name="peisongfei">配送费</string>
+    <string name="dabaofei">打包费</string>
+    <string name="dabaofeiprice">￥0.5</string>
+    <string name="peisongfeiprice">￥1.0</string>
+    <string name="pay">提交订单</string>
 </resources>

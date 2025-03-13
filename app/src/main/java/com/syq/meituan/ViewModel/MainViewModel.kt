@@ -14,5 +14,4 @@ class MainViewModel() : ViewModel(){
    fun loadStore(): LiveData<MutableList<ItemsModel>>{
         return  repository.loadStore()
     }
-    private val _storeData = MutableLiveData<MutableList<ItemsModel>>()
 }

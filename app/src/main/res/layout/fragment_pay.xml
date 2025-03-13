@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/payFragment"
     android:layout_width="match_parent"
     android:layout_height="700dp"
     android:background="@drawable/white_top_corner"
@@ -45,17 +46,15 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:src="@drawable/star"
+            android:layout_width="12dp"
+            android:layout_height="18dp"
             android:alpha="0.6"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView4" />
+            android:src="@drawable/star"
+            app:layout_constraintEnd_toStartOf="@+id/tips"
+            app:layout_constraintTop_toTopOf="@+id/tips" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tips"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
@@ -66,15 +65,15 @@
             app:layout_constraintStart_toStartOf="@+id/time"
             app:layout_constraintTop_toBottomOf="@+id/time" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <TextView
+            android:id="@+id/storeTitle"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
             android:layout_marginTop="30dp"
-            android:background="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            android:text="麻辣香锅"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <ProgressBar
             android:id="@+id/progressBar4"
@@ -83,16 +82,83 @@
             android:layout_height="wrap_content"
             android:indeterminateTint="@color/Goldenrod"
             android:indeterminateTintMode="src_in"
-            app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+            app:layout_constraintBottom_toBottomOf="@+id/recyclerViewFood"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/recyclerView" />
+            app:layout_constraintTop_toTopOf="@+id/recyclerViewFood" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewFood"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/storeTitle" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/yunfei"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomList"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewFood">
+
+            <TextView
+                android:id="@+id/dabaofei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/dabaofei"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/peisongfei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/peisongfei"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/dabaofei"
+                app:layout_constraintTop_toBottomOf="@+id/dabaofei" />
+
+            <TextView
+                android:id="@+id/peisongprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:text="@string/peisongfeiprice"
+                app:layout_constraintStart_toStartOf="@+id/dabaoprice"
+                app:layout_constraintTop_toBottomOf="@+id/dabaoprice" />
+
+            <TextView
+                android:id="@+id/dabaoprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:text="@string/dabaofeiprice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dabaofei" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottomList"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/bottom_bg"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView">
+            app:layout_constraintTop_toBottomOf="@+id/yunfei"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="639dp">
 
 
             <Button
@@ -100,7 +166,7 @@
                 android:layout_width="120dp"
                 android:layout_height="70dp"
                 android:backgroundTint="@color/Gold"
-                android:text="提交订单"
+                android:text="@string/pay"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -113,7 +179,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="90dp"
-                android:text="合计￥0.00"
+                android:text="合计￥1.5"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"

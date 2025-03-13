@@ -5,31 +5,24 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.syq.meituan.Adapter.ListAdapter
 import com.syq.meituan.Adapter.SingleAdapter
-import com.syq.meituan.Adapter.StoreAdapter
-import com.syq.meituan.Domain.ItemsModel
 import com.syq.meituan.Fragment.PayFragment
 import com.syq.meituan.R
-import com.syq.meituan.Repository.UserRepository
-import com.syq.meituan.SecurityUtils
 import com.syq.meituan.ViewModel.MainViewModel
 import com.syq.meituan.databinding.ActivityDetailBinding
-import com.syq.meituan.databinding.ViewholderStoreBinding
 
 class DetailActivity : AppCompatActivity() , SingleAdapter.OnQuantityChangeListener{
     lateinit var binding: ActivityDetailBinding
     private val viewModel = MainViewModel()
 
     var id: Int = 0;
+    private var numberincart:ArrayList<Int> = arrayListOf(0,0,0,0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,15 +30,21 @@ class DetailActivity : AppCompatActivity() , SingleAdapter.OnQuantityChangeListe
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         id = intent.getIntExtra("id", 0)
-        val back: Button = findViewById(R.id.backBtn)
 
-        back.setOnClickListener {
+        binding.backBtn.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
 
-        val pay: Button = findViewById(R.id.payBtn)
-        pay.setOnClickListener {
+
+
+        binding.payBtn.setOnClickListener{
             val dialog = PayFragment()
+            // 通过 Bundle 传递参数
+            val args = Bundle().apply {
+                putInt("id_key", id) // "id_key" 是参数名，id 是你要传递的值
+                putIntegerArrayList("numberInCart",numberincart)
+            }
+            dialog.arguments = args // 将 Bundle 设置给 Fragment
             dialog.show(supportFragmentManager, "MyCustomDialog")
         }
         initBanner()
@@ -83,7 +82,6 @@ class DetailActivity : AppCompatActivity() , SingleAdapter.OnQuantityChangeListe
             binding.single.layoutManager = GridLayoutManager(this, 1)
             val adapter = SingleAdapter(id, it)
             adapter.setOnQuantityChangeListener(this) // 绑定监听器
-            adapter.numberInCart = arrayListOf(0, 0, 0, 0)
             binding.single.adapter = adapter
             binding.progressBar4.visibility = View.GONE
         }
@@ -91,6 +89,7 @@ class DetailActivity : AppCompatActivity() , SingleAdapter.OnQuantityChangeListe
     }
 
     override fun onQuantityChanged(numberInCart: ArrayList<Int>) {
+        numberincart = numberInCart
         // 直接使用传递的 numberInCart 数组计算总价
         updateTotalPrice(numberInCart)
     }

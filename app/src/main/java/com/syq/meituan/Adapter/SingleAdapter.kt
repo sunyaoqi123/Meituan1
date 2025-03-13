@@ -13,7 +13,6 @@ import com.syq.meituan.databinding.ViewholderSingleBinding
 
 class SingleAdapter(var id :Int, val items: MutableList<ItemsModel>) : RecyclerView.Adapter<SingleAdapter.Viewholder>() {
     lateinit var context: Context
-    private lateinit var item : ItemsModel
     class Viewholder(val binding: ViewholderSingleBinding): RecyclerView.ViewHolder(binding.root)
 
     interface OnQuantityChangeListener {
@@ -52,7 +51,7 @@ class SingleAdapter(var id :Int, val items: MutableList<ItemsModel>) : RecyclerV
 
         holder.binding.subButton.setOnClickListener {
             if (numberInCart[position] > 0) {
-                numberInCart[position + 1]--
+                numberInCart[position]--
                 holder.binding.count.text = numberInCart[position].toString()
 
                 quantityListener?.onQuantityChanged(numberInCart) // 触发回调

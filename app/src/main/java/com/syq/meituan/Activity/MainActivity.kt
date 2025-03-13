@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initStore() {
         binding.progressBar2.visibility = View.VISIBLE
-        viewModel.loadStore().observe(this) { storeList ->
+        viewModel.loadStore().observeForever { storeList ->
             binding.store.layoutManager = GridLayoutManager(this, 1)
             val adapter = StoreAdapter(storeList).apply {
                 setOnItemClickListener { selectedInt ->
