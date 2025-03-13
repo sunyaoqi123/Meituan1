@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.RouteListingPreference
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.syq.meituan.Domain.ItemsModel
@@ -13,10 +14,11 @@ import com.syq.meituan.databinding.ViewholderPayBinding
 class PayAdapter(var id: Int, val items:MutableList<ItemsModel>,private var numberInCart: ArrayList<Int>): RecyclerView.Adapter<PayAdapter.Viewholder>() {
 
     lateinit var context: Context
-    private var price = 0.0
+    private var price = 1.5
 
     interface OnQuantityChangeListener {
         fun onQuantityChanged(updatedNumberInCart: Double)
+
     }
 
     private var quantityListener: OnQuantityChangeListener? = null
@@ -55,6 +57,7 @@ class PayAdapter(var id: Int, val items:MutableList<ItemsModel>,private var numb
         Glide.with(holder.itemView.context)
             .load(itemData.picUrl[originalIndex + 1])
             .into(holder.binding.foodPic)
+        loadPrice()
     }
 
     private fun loadPrice(){

@@ -114,9 +114,9 @@ class PayFragment :DialogFragment(),PayAdapter.OnQuantityChangeListener{
         binding.progressBar4.visibility = View.VISIBLE
         viewModel.loadStore().observeForever {
             binding.recyclerViewFood.layoutManager = GridLayoutManager(context,1)
-            binding.recyclerViewFood.adapter = PayAdapter(id,it,numberInCart)
             val adapter = PayAdapter(id, it,numberInCart)
             adapter.setOnQuantityChangeListener(this) // 绑定监听器
+            binding.recyclerViewFood.adapter = adapter
             binding.recyclerViewFood.adapter = adapter
             binding.progressBar4.visibility = View.GONE
         }
@@ -130,6 +130,7 @@ class PayFragment :DialogFragment(),PayAdapter.OnQuantityChangeListener{
 
     override fun onQuantityChanged(price: Double) {
         Price = price
+        //Toast.makeText(context, "合计：${price}", Toast.LENGTH_SHORT).show()
         // 直接使用传递的 numberInCart 数组计算总价
         updateTotalPrice(price)
     }
@@ -137,7 +138,7 @@ class PayFragment :DialogFragment(),PayAdapter.OnQuantityChangeListener{
     private fun updateTotalPrice(price: Double) {
         viewModel.loadStore().observeForever {
             binding.allPrice.text = "合计￥${String.format("%.2f", price)}"
-            Toast.makeText(context, "合计：${price}", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(context, "合计：${price}", Toast.LENGTH_SHORT).show()
         }
     }
 }
