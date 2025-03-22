@@ -155,7 +155,7 @@
                         android:adjustViewBounds="true"
                         android:maxWidth="50dp"
                         android:maxHeight="50dp"
-                        app:srcCompat="@drawable/order" />
+                        app:srcCompat="@drawable/btn_3"/>
                 </LinearLayout>
 
                 <LinearLayout

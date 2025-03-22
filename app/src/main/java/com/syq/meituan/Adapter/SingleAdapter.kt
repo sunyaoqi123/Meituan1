@@ -25,7 +25,6 @@ class SingleAdapter(var id :Int, val items: MutableList<ItemsModel>) : RecyclerV
         this.quantityListener = listener
     }
 
-    // 维护 Adapter 内部的 numberInCart 数组
     var numberInCart: ArrayList<Int> = arrayListOf(0, 0, 0, 0) // 根据实际长度初始化
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {

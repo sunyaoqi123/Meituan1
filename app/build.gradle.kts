@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
+    id ("kotlin-kapt")
 }
 
 android {
@@ -40,6 +41,9 @@ android {
 }
 
 dependencies {
+    implementation (libs.com.github.bumptech.glide.glide.v4120)
+    implementation (libs.glide.okhttp3.integration)
+    annotationProcessor (libs.compiler)
     implementation(libs.glide)
     implementation(libs.gson)
     implementation(libs.androidx.security.security.crypto3)

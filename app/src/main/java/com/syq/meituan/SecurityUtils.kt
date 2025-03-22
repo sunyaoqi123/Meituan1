@@ -3,7 +3,7 @@ package com.syq.meituan
 import at.favre.lib.crypto.bcrypt.BCrypt
 
 object SecurityUtils {
-    // 生成BCrypt哈希密码（自动包含盐值）
+    // 生成BCrypt哈希密码
     fun hashPassword(password: String): String {
         return BCrypt.withDefaults().hashToString(12, password.toCharArray())
     }

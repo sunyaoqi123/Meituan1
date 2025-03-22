@@ -1,5 +1,6 @@
 package com.syq.meituan.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -7,17 +8,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.syq.meituan.Activity.registerActivity
 import com.syq.meituan.Adapter.PayAdapter
 import com.syq.meituan.Adapter.SingleAdapter
 import com.syq.meituan.R
 import com.syq.meituan.ViewModel.MainViewModel
 import com.syq.meituan.databinding.ActivityDetailBinding
 import com.syq.meituan.databinding.FragmentPayBinding
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -67,6 +74,9 @@ class PayFragment :DialogFragment(),PayAdapter.OnQuantityChangeListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val TimePlus20 = getCurrentTimePlus20Min()
+        val TimePlus50 = getCurrentTimePlus50Min()
+        binding.time.text = "预计送达时间：${TimePlus20} - ${TimePlus50}"
         initPay() // 确保此时 binding 已可用
         initStoreTitle()
     }
@@ -141,4 +151,21 @@ class PayFragment :DialogFragment(),PayAdapter.OnQuantityChangeListener{
             //Toast.makeText(context, "合计：${price}", Toast.LENGTH_SHORT).show()
         }
     }
+
+    private fun getCurrentTimePlus20Min(): String {
+        val calendar = Calendar.getInstance().apply {
+            time = Date()               // 设置当前时间
+            add(Calendar.MINUTE, 20)    // 增加20分钟
+        }
+        return SimpleDateFormat("HH:mm", Locale.getDefault()).format(calendar.time)
+    }
+
+    private fun getCurrentTimePlus50Min(): String {
+        val calendar = Calendar.getInstance().apply {
+            time = Date()               // 设置当前时间
+            add(Calendar.MINUTE, 50)    // 增加50分钟
+        }
+        return SimpleDateFormat("HH:mm", Locale.getDefault()).format(calendar.time)
+    }
+
 }
